@@ -4,27 +4,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class Spawner : MonoBehaviour
+public class SpawnManager
 {
-    [SerializeField] private Main Main;
-    [SerializeField] private Connectable ConnectablePrefab;
-    [SerializeField, Range(0, 20)] private int SpawnCount;
+    private readonly IConnectableService _connectableService;
+    private Connectable _connectablePrefab;
+    private int _spawnCount;
+    private float _radius;
 
-    private Connectable[] _spawned;
-
-    private void Awake()
+    public SpawnManager(IConnectableService connectableService, Connectable connectablePrefab, int spawnCount, float radius)
     {
-        if(!Main)
-            return;
+        _connectableService = connectableService;
+        _connectablePrefab = connectablePrefab;
+        _spawnCount = spawnCount;
+        _radius = radius;
         
-        if(SpawnCount <= 0)
+        Spawn();
+    }
+
+    private void Spawn()
+    {
+        if(_spawnCount <= 0)
             return;
 
-        _spawned = new Connectable[SpawnCount];
-
-        for (int i = 0; i < SpawnCount; i++)
+        for (int i = 0; i < _spawnCount; i++)
         {
-            _spawned[i] = SpawnOnRandomPos(Main.Radius);
+            _connectableService.ConnectableSpawned(SpawnOnRandomPos(_radius));
         }
     }
 
@@ -38,7 +42,7 @@ public class Spawner : MonoBehaviour
     
     private Connectable SpawnOnPos(Vector3 pos)
     {
-        Connectable newConnectable = Instantiate(ConnectablePrefab, pos, Quaternion.identity);
+        Connectable newConnectable = GameObject.Instantiate(_connectablePrefab, pos, Quaternion.identity);
         return newConnectable;
     }
 }

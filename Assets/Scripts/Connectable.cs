@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class Connectable : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField] private MeshRenderer PlatformRenderer;
+    [SerializeField] private MeshRenderer SphereRenderer;
+    [SerializeField] private Material DefaultMat;
+    [SerializeField] private Material BlueMat;
+    [SerializeField] private Material YellowMat;
 }
