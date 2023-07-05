@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameServicesProvider : MonoBehaviour
+public class GameProvider : MonoBehaviour
 {
     [SerializeField] private Main Main;
     [SerializeField] private Connectable Prefab;
