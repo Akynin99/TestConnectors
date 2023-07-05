@@ -106,7 +106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ConnectableParent: {fileID: 3548474685707435144}
-  ClickableType: 0
+  Type: 0
 --- !u!1 &7224230683840592854
 GameObject:
   m_ObjectHideFlags: 0
@@ -213,7 +213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ConnectableParent: {fileID: 3548474685707435144}
-  ClickableType: 1
+  Type: 1
 --- !u!1 &7355775886437882563
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,6 +261,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlatformRenderer: {fileID: 6505737108239907717}
   SphereRenderer: {fileID: 2168407295058359912}
+  LinePoint: {fileID: 5718056029114317225}
   DefaultMat: {fileID: 2100000, guid: be299d4d6b130b4468558022fbd42177, type: 2}
   BlueMat: {fileID: 2100000, guid: 8a07e76c900ee0743aeac4c4af6713b3, type: 2}
   YellowMat: {fileID: 2100000, guid: ffa8f35ed3fb3aa4e95d1ccd0452bd7a, type: 2}

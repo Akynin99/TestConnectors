@@ -13,11 +13,11 @@ public class MouseCaster : IMouseCaster
         _castDistance = settings.GetCastDistance;
     }
     
-    public Clickable RaycastForClickable(Vector3 mousePos)
+    public Clickable RaycastForClickable()
     {
         Camera camera = Camera.main;
 
-        Ray ray = camera.ScreenPointToRay(mousePos);
+        Ray ray = camera.ScreenPointToRay(Input.mousePosition);
 
         if (Physics.Raycast(ray, out var hit, _castDistance, _clickableLayerMask))
         {
@@ -30,11 +30,11 @@ public class MouseCaster : IMouseCaster
         return null;
     }
 
-    public Vector3 RaycastSurfacePos(Vector3 mousePos)
+    public Vector3 RaycastSurfacePos()
     {
         Camera camera = Camera.main;
 
-        Ray ray = camera.ScreenPointToRay(mousePos);
+        Ray ray = camera.ScreenPointToRay(Input.mousePosition);
 
         if (Physics.Raycast(ray, out var hit, _castDistance, _surfaceLayerMask))
         {

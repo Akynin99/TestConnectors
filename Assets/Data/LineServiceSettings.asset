@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77cd40939c6d4c743a40e70affe9bfcc, type: 3}
-  m_Name: SpawnManagerSettings
+  m_Script: {fileID: 11500000, guid: 0e63e7abb93726e47ac67f895316be4d, type: 3}
+  m_Name: LineServiceSettings
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 3548474685707435144, guid: 34741b90a6f20bd43b73f889865c454c, type: 3}
-  SpawnCount: 10
-  SceneFolderName: Connectables
+  SceneFolderName: Lines
+  LinePrefab: {fileID: 8202575285456271957, guid: 9d34c0d189d36974ba7b94835c81271e,
+    type: 3}

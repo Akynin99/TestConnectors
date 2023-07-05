@@ -344,6 +344,8 @@ MonoBehaviour:
     type: 2}
   MouseCasterSettings: {fileID: 11400000, guid: d3d8824f3da76ef4b89888b4857393b9,
     type: 2}
+  LineServiceSettings: {fileID: 11400000, guid: dabe87d36a82acc4794358b3b2df1023,
+    type: 2}
 --- !u!1 &1071601363
 GameObject:
   m_ObjectHideFlags: 0

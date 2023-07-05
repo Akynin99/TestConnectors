@@ -5,10 +5,10 @@ using UnityEngine;
 public class Clickable : MonoBehaviour
 {
     [SerializeField] private Connectable ConnectableParent;
-    [SerializeField] private ClickableType ClickableType;
+    [SerializeField] private ClickableType Type;
 
     public Connectable Parent => ConnectableParent;
-    public ClickableType Type => ClickableType;
+    public ClickableType ClickableType => Type;
 }
 
 public enum ClickableType

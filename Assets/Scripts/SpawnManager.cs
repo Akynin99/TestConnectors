@@ -3,10 +3,10 @@ using Random = UnityEngine.Random;
 
 public class SpawnManager
 {
-    private Connectable _connectablePrefab;
-    private int _spawnCount;
-    private float _radius;
-    
+    private readonly Connectable _connectablePrefab;
+    private readonly int _spawnCount;
+    private readonly float _radius;
+    private readonly Transform _folder;
     private readonly IConnectableService _connectableService;
 
     public SpawnManager(IConnectableService connectableService, SpawnManagerSettings settings, float radius)
@@ -15,6 +15,10 @@ public class SpawnManager
         _connectablePrefab = settings.GetPrefab;
         _spawnCount = settings.GetSpawnCount;
         _radius = radius;
+
+        GameObject folderGO = new GameObject();
+        folderGO.name = settings.GetFolderName;
+        _folder = folderGO.transform;
         
         Spawn();
     }
@@ -41,6 +45,7 @@ public class SpawnManager
     private Connectable SpawnOnPos(Vector3 pos)
     {
         Connectable newConnectable = GameObject.Instantiate(_connectablePrefab, pos, Quaternion.identity);
+        newConnectable.transform.parent = _folder;
         return newConnectable;
     }
 }

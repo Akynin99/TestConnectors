@@ -7,27 +7,31 @@ public class GameProvider : MonoBehaviour
     [SerializeField] private Main Main;
     [SerializeField] private SpawnManagerSettings SpawnManagerSettings;
     [SerializeField] private MouseCasterSettings MouseCasterSettings;
+    [SerializeField] private LineServiceSettings LineServiceSettings;
 
     private PlayerControlManager _playerControlManager;
     private SpawnManager _spawnManager;
+    
+    private readonly List<IForUpdate> _forUpdates = new List<IForUpdate>();
 
     private void Awake()
     {
-        InitManagers();
-        
-    }
-
-    private void InitManagers()
-    {
         IMouseCaster mouseCaster = new MouseCaster(MouseCasterSettings);
         IConnectableService connectableService = new ConnectableService();
-        
-        _playerControlManager = new PlayerControlManager(mouseCaster, connectableService);
+        ILineService lineService = new LineService(LineServiceSettings);
+
+        _playerControlManager = new PlayerControlManager(mouseCaster, connectableService, lineService);
         _spawnManager = new SpawnManager(connectableService, SpawnManagerSettings, Main.Radius);
+
+        _forUpdates.Add((IForUpdate)_playerControlManager);
     }
+
 
     private void Update()
     {
-        _playerControlManager.Update();
+        foreach (var forUpdate in _forUpdates)
+        {
+            forUpdate.Update();
+        }
     }
 }
