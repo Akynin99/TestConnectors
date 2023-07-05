@@ -340,14 +340,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Main: {fileID: 1288515604}
-  Prefab: {fileID: 3548474685707435144, guid: 34741b90a6f20bd43b73f889865c454c, type: 3}
-  SurfaceLayerMask:
-    serializedVersion: 2
-    m_Bits: 256
-  ClickableLayerMask:
-    serializedVersion: 2
-    m_Bits: 512
-  CastDistance: 100
+  SpawnManagerSettings: {fileID: 11400000, guid: 86eb44fe55d5a0140a06bea703aff964,
+    type: 2}
+  MouseCasterSettings: {fileID: 11400000, guid: d3d8824f3da76ef4b89888b4857393b9,
+    type: 2}
 --- !u!1 &1071601363
 GameObject:
   m_ObjectHideFlags: 0

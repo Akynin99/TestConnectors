@@ -6,11 +6,11 @@ public class MouseCaster : IMouseCaster
     private LayerMask _clickableLayerMask;
     private float _castDistance;
     
-    public MouseCaster(LayerMask surfaceLayerMask, LayerMask clickableLayerMask, float castDistance)
+    public MouseCaster(MouseCasterSettings settings)
     {
-        _surfaceLayerMask = surfaceLayerMask;
-        _clickableLayerMask = clickableLayerMask;
-        _castDistance = castDistance;
+        _surfaceLayerMask = settings.GetSurfaceLayerMask;
+        _clickableLayerMask = settings.GetClickableLayerMask;
+        _castDistance = settings.GetCastDistance;
     }
     
     public Clickable RaycastForClickable(Vector3 mousePos)

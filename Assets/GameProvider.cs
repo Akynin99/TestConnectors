@@ -5,10 +5,8 @@ using UnityEngine;
 public class GameProvider : MonoBehaviour
 {
     [SerializeField] private Main Main;
-    [SerializeField] private Connectable Prefab;
-    [SerializeField] private LayerMask SurfaceLayerMask;
-    [SerializeField] private LayerMask ClickableLayerMask;
-    [SerializeField] private float CastDistance;
+    [SerializeField] private SpawnManagerSettings SpawnManagerSettings;
+    [SerializeField] private MouseCasterSettings MouseCasterSettings;
 
     private PlayerControlManager _playerControlManager;
     private SpawnManager _spawnManager;
@@ -21,11 +19,11 @@ public class GameProvider : MonoBehaviour
 
     private void InitManagers()
     {
-        IMouseCaster mouseCaster = new MouseCaster(SurfaceLayerMask, ClickableLayerMask, CastDistance);
+        IMouseCaster mouseCaster = new MouseCaster(MouseCasterSettings);
         IConnectableService connectableService = new ConnectableService();
         
         _playerControlManager = new PlayerControlManager(mouseCaster, connectableService);
-        _spawnManager = new SpawnManager(connectableService, Prefab, 10, Main.Radius);
+        _spawnManager = new SpawnManager(connectableService, SpawnManagerSettings, Main.Radius);
     }
 
     private void Update()

@@ -1,21 +1,19 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class SpawnManager
 {
-    private readonly IConnectableService _connectableService;
     private Connectable _connectablePrefab;
     private int _spawnCount;
     private float _radius;
+    
+    private readonly IConnectableService _connectableService;
 
-    public SpawnManager(IConnectableService connectableService, Connectable connectablePrefab, int spawnCount, float radius)
+    public SpawnManager(IConnectableService connectableService, SpawnManagerSettings settings, float radius)
     {
         _connectableService = connectableService;
-        _connectablePrefab = connectablePrefab;
-        _spawnCount = spawnCount;
+        _connectablePrefab = settings.GetPrefab;
+        _spawnCount = settings.GetSpawnCount;
         _radius = radius;
         
         Spawn();
