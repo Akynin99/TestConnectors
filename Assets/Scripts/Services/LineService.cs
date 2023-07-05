@@ -1,14 +1,16 @@
+using System.Collections.Generic;
+using TestConnectors.View;
+using UnityEngine;
 
-    using System.Collections.Generic;
-    using UnityEngine;
-
+namespace TestConnectors.Services
+{
     public class LineService : ILineService
     {
-        private Line _notConnectedLine;
+        private LineView _notConnectedLine;
         
-        private readonly Line _prefab;
+        private readonly LineView _prefab;
         private readonly Transform _folder;
-        private readonly List<Line> _lines = new List<Line>();
+        private readonly List<LineView> _lines = new List<LineView>();
 
         public LineService(LineServiceSettings settings)
         {
@@ -19,7 +21,7 @@
             _folder = folderGO.transform;
         }
         
-        public void CreateLine(Connectable connectable)
+        public void CreateLine(ConnectableView connectable)
         {
             if (!_notConnectedLine)
                 _notConnectedLine = SpawnNewLine();
@@ -34,7 +36,7 @@
             _notConnectedLine.SetEndPos(pos);
         }
 
-        public void ConnectLine(Connectable connectable)
+        public void ConnectLine(ConnectableView connectable)
         {
             _notConnectedLine.Connect(connectable);
             _notConnectedLine = null;
@@ -48,11 +50,12 @@
             _notConnectedLine.gameObject.SetActive(false);
         }
 
-        private Line SpawnNewLine()
+        private LineView SpawnNewLine()
         {
-            Line newLine = GameObject.Instantiate(_prefab, _folder, true);
+            LineView newLine = GameObject.Instantiate(_prefab, _folder, true);
             _lines.Add(_notConnectedLine);
 
             return newLine;
         }
     }
+}
