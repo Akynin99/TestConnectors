@@ -5,10 +5,11 @@ using UnityEngine;
 
 namespace TestConnectors
 {
+    // Провайдер берет на себя функцию связывания вместе менеджеров и сервисов, а так же инициализирует их
     public class GameProvider : MonoBehaviour
     {
         [SerializeField] private Main Main;
-        [SerializeField] private SpawnManagerSettings SpawnManagerSettings;
+        [SerializeField] private SpawnManagerSettings SpawnManagerSettings; 
         [SerializeField] private MouseCasterSettings MouseCasterSettings;
         [SerializeField] private LineServiceSettings LineServiceSettings;
 
@@ -28,7 +29,6 @@ namespace TestConnectors
 
             _forUpdates.Add((IForUpdate)_playerControlManager);
         }
-
 
         private void Update()
         {

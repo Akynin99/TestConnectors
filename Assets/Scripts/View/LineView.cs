@@ -2,6 +2,7 @@
 
 namespace TestConnectors.View
 {
+    // класс который вешается на префаб линии для того чтобы привязывать линии к шарам
     public class LineView : MonoBehaviour
     {
         [SerializeField] private LineRenderer LineRenderer;

@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace TestConnectors.Services
 {
+    // этот сервис нужен для того чтобы определять на что сейчас указывает мышь
     public class MouseCaster : IMouseCaster
     {
         private LayerMask _surfaceLayerMask;
@@ -16,6 +17,7 @@ namespace TestConnectors.Services
             _castDistance = settings.GetCastDistance;
         }
     
+        // проверка не указывает ли мышь на объект Connectable
         public ClickableView RaycastForClickable()
         {
             Camera camera = Camera.main;
@@ -33,6 +35,7 @@ namespace TestConnectors.Services
             return null;
         }
 
+        // находим точку на поверхности на которую указывает мышь
         public Vector3 RaycastSurfacePos()
         {
             Camera camera = Camera.main;

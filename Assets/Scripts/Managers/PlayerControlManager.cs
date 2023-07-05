@@ -4,13 +4,14 @@ using UnityEngine;
 
 namespace TestConnectors.Managers
 {
+    // Менеджер который отвечает за логику управления 
     public class PlayerControlManager : IForUpdate
     {
         private readonly IMouseCaster _mouseCaster;
         private readonly IConnectableService _connectableService;
         private readonly ILineService _lineService;
     
-        private ControlState _currentState;
+        private ControlState _currentState; // текущее состояние 
         private Vector3 _lastMousePos;
         private Vector3 _lastMouseSurfacePos;
         private bool _mousePressedLastFrame;
@@ -59,12 +60,14 @@ namespace TestConnectors.Managers
 
             if (clickable.ClickableType == ClickableType.Platform)
             {
+                // кликнули по платформе
                 _currentState = ControlState.DraggingPlatform;
                 _connectableService.SelectForDrag(clickable.Parent);
                 _lastMouseSurfacePos = _mouseCaster.RaycastSurfacePos();
             }
             else if (clickable.ClickableType == ClickableType.Connector)
             {
+                // кликнули по шару
                 _currentState = ControlState.DraggingLine;
                 _connectableService.SelectForLine(clickable.Parent);
                 _lineService.CreateLine(clickable.Parent);
@@ -75,10 +78,13 @@ namespace TestConnectors.Managers
         {
             if(!Input.GetMouseButton(0))
             {
+                // отпустили мышку - перестали двигать платформу
                 _currentState = ControlState.Default;
                 return;
             }
         
+            //продолжаем тянуть платформу
+            
             Vector3 mouseSurfacePos = _mouseCaster.RaycastSurfacePos();
 
             Vector3 diff = mouseSurfacePos - _lastMouseSurfacePos;
@@ -97,12 +103,14 @@ namespace TestConnectors.Managers
 
             if (clickableView && clickableView.ClickableType == ClickableType.Connector)
             {
+                // кликнули по второму шару
                 _lineService.ConnectLine(clickableView.Parent);
                 _currentState = ControlState.Default;
                 _connectableService.UnselectConnectableForLine();
             }
             else
             {
+                // кликнули не по шару
                 _lineService.DestroyLine();
                 _currentState = ControlState.Default;
                 _connectableService.UnselectConnectableForLine();
@@ -116,24 +124,31 @@ namespace TestConnectors.Managers
         
             if (Input.GetMouseButton(0))
             {
+                // держим мышку нажатой - линия тянется за курсором
                 _lineService.SetEndPos(_mouseCaster.RaycastSurfacePos());
 
                 if (clickable && clickable.ClickableType == ClickableType.Connector)
                 {
+                    // курсор находится над шаром - подсвечиваем его
                     _connectableService.SelectAsCandidateForConnect(clickable.Parent);
                 }
             
                 return;
             }
 
+            // отпустили мышку
+            
             if (clickable && clickable.ClickableType == ClickableType.Connector)
             {
+                // курсор над шаром   
                 if (_connectableService.IsSelected(clickable.Parent))
                 {
+                    // если это тот же шар, откуда мы тянули мышку, то мы просто переходим к Способу 1 (из ТЗ)
                     _currentState = ControlState.SphereSelected;
                 }
                 else
                 {
+                    // соединяем шары
                     _lineService.ConnectLine(clickable.Parent);
                     _currentState = ControlState.Default;
                     _connectableService.UnselectConnectableForLine();
@@ -141,6 +156,7 @@ namespace TestConnectors.Managers
             }
             else
             {
+                // курсор не над шаром - убираем линию и подсветку шаров
                 _lineService.DestroyLine();
                 _currentState = ControlState.Default;
                 _connectableService.UnselectConnectableForLine();
@@ -149,10 +165,10 @@ namespace TestConnectors.Managers
     
         private enum ControlState
         {
-            Default = 0,
-            DraggingPlatform = 1,
-            SphereSelected = 2,
-            DraggingLine = 3,
+            Default = 0,            // ничего не выбрано
+            DraggingPlatform = 1,   // выбрали платформу и двигаем её
+            SphereSelected = 2,     // выбрали сферу для соединения 
+            DraggingLine = 3,       // тянем линию от сферы 
         }
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace TestConnectors.Services
 {
+    // сервис который отвечает за создание линий, передачу линиям позиций и соединение линий с объектами Connectable
     public class LineService : ILineService
     {
         private LineView _notConnectedLine;

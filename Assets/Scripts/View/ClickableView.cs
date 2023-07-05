@@ -2,6 +2,7 @@
 
 namespace TestConnectors.View
 {
+    // этот класс вешается на те объекты по которым можно кликнуть (платформы и шары)
     public class ClickableView : MonoBehaviour
     {
         [SerializeField] private ConnectableView ConnectableParent;

@@ -2,6 +2,7 @@
 
 namespace TestConnectors.View
 {
+    // этот класс вешается на объекты Connectable, нужен для того чтобы изменять цвет шаров
     public class ConnectableView : MonoBehaviour
     {
         [SerializeField] private MeshRenderer PlatformRenderer;

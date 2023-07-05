@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace TestConnectors.Services
 {
+    // сервис который нужен для подсветки шаров и изменения позиции объектов Connectable
     public class ConnectableService : IConnectableService
     {
         private List<ConnectableView> _all = new List<ConnectableView>();

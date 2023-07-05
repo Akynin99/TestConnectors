@@ -5,6 +5,7 @@ using Random = UnityEngine.Random;
 
 namespace TestConnectors.Managers
 {
+    // менеджер который отвечает за спавн объектов Connectable в начале игры
     public class SpawnManager
     {
         private readonly ConnectableView _connectablePrefab;
