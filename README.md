@@ -1,5 +1,7 @@
 # TestConnectors
 
+![](https://github.com/Akynin99/TestConnectors/blob/master/Unity_UGGNTNbIcH.gif)
+
 ---
 
 ### Архитектура:
